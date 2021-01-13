@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--<context:component-scan base-package="com.gjsyoung.test.AOPTest"></context:component-scan>-->
+
+    <!--<bean class="com.gjsyoung.test.AOPTest.Car"></bean>-->
+    <!--<bean id="carServiceAOP" class="com.gjsyoung.test.AOPTest.CarAopServiceImpl"></bean>-->
+
+    <!--<aop:config>-->
+
+        <!--<aop:pointcut id="setCarName" expression="execution(* com.gjsyoung.test.AOPTest.Car.setName(..))"></aop:pointcut>-->
+        <!--<aop:pointcut id="carDrive" expression="execution(* com.gjsyoung.test.AOPTest.Car.drive(..))"></aop:pointcut>-->
+
+        <!--<aop:aspect id="carService" ref="carServiceAOP">-->
+            <!--<aop:before method="startService" pointcut-ref="carDrive"></aop:before>-->
+            <!--<aop:after method="endService" pointcut-ref="carDrive"></aop:after>-->
+            <!--<aop:after-throwing method="exceptionService" pointcut-ref="carDrive"></aop:after-throwing>-->
+
+            <!--<aop:around method="logService" pointcut-ref="setCarName"></aop:around>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+    <bean class="com.gjsyoung.test.AOPTest.Car"></bean>
+    <bean class="com.gjsyoung.test.AOPTest.Boss"></bean>
+    <bean id="bossServiceAOP" class="com.gjsyoung.test.AOPTest.BossAopServiceImpl"></bean>
+    <aop:config>
+        <aop:pointcut id="bossDriveCar" expression="execution(* com.gjsyoung.test.AOPTest.Boss.drive(String)) and args(carName)"></aop:pointcut>
+        <aop:aspect ref="bossServiceAOP">
+            <aop:before method="countName" pointcut-ref="bossDriveCar"></aop:before>
+        </aop:aspect>
+    </aop:config>
+</beans>

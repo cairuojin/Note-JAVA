@@ -1,0 +1,16 @@
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎你到HOME</h1>
+    <a th:href="@{/spittles}">Spittles</a>
+    <a th:href="@{/spitter/register}">Register</a>
+
+    <label th:class="${#fields.hasErrors('firstName')} ? 'error'">First Name</label>
+    <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')} ? 'error'"/><br>
+
+
+</body>
+</html>
